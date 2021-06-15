@@ -1,11 +1,10 @@
-package cl.mobdev.coursejavaspringboot.domain;
+package cl.mobdev.coursejavaspringboot.application.domain;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Address {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -16,7 +15,7 @@ public class Address {
     private String zip;
 
     @OneToOne(mappedBy = "address")
-    private Set<Publisher> publishers = new HashSet<>();
+    private Publisher publisher;
 
     public Address() {
     }
@@ -26,6 +25,14 @@ public class Address {
         this.city = city;
         this.state = state;
         this.zip = zip;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 
     public Long getId() {
@@ -68,14 +75,6 @@ public class Address {
         this.zip = zip;
     }
 
-    public Set<Publisher> getPublishers() {
-        return publishers;
-    }
-
-    public void setPublishers(Set<Publisher> publishers) {
-        this.publishers = publishers;
-    }
-
     @Override
     public String toString() {
         return "Address{" +
@@ -84,7 +83,6 @@ public class Address {
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", zip='" + zip + '\'' +
-                ", publishers=" + publishers +
                 '}';
     }
 

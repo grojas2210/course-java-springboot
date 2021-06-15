@@ -1,4 +1,5 @@
-package cl.mobdev.coursejavaspringboot.domain;
+package cl.mobdev.coursejavaspringboot.application.domain;
+
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -13,11 +14,9 @@ public class Publisher {
 
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Set<Address> address = new HashSet<>();
-
-
+    private Address address;
 
 
     @OneToMany
@@ -27,8 +26,9 @@ public class Publisher {
     public Publisher() {
     }
 
-    public Publisher(String name) {
+    public Publisher(String name, Address address) {
         this.name = name;
+        this.address = address;
     }
 
     public Long getId() {
@@ -47,11 +47,11 @@ public class Publisher {
         this.name = name;
     }
 
-    public Set<Address> getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(Set<Address> address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
@@ -69,7 +69,6 @@ public class Publisher {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address=" + address +
-                ", books=" + books +
                 '}';
     }
 

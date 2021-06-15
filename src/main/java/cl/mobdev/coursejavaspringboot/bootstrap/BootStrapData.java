@@ -1,13 +1,13 @@
 package cl.mobdev.coursejavaspringboot.bootstrap;
 
-import cl.mobdev.coursejavaspringboot.domain.Address;
-import cl.mobdev.coursejavaspringboot.domain.Author;
-import cl.mobdev.coursejavaspringboot.domain.Book;
-import cl.mobdev.coursejavaspringboot.domain.Publisher;
-import cl.mobdev.coursejavaspringboot.repositories.AddressRepository;
-import cl.mobdev.coursejavaspringboot.repositories.AuthorRepository;
-import cl.mobdev.coursejavaspringboot.repositories.BookRepository;
-import cl.mobdev.coursejavaspringboot.repositories.PublisherRepository;
+import cl.mobdev.coursejavaspringboot.application.domain.Address;
+import cl.mobdev.coursejavaspringboot.application.domain.Author;
+import cl.mobdev.coursejavaspringboot.application.domain.Book;
+import cl.mobdev.coursejavaspringboot.application.domain.Publisher;
+import cl.mobdev.coursejavaspringboot.data.repositories.AddressRepository;
+import cl.mobdev.coursejavaspringboot.data.repositories.AuthorRepository;
+import cl.mobdev.coursejavaspringboot.data.repositories.BookRepository;
+import cl.mobdev.coursejavaspringboot.data.repositories.PublisherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -29,11 +29,9 @@ public class BootStrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("Started in Bootstrap");
-        Address address = new Address("Address line 1", "Santiago", "Santiago Centro", "8320000");
-        Publisher publisher = new Publisher("Gabriela Rojas");
 
-        publisher.getAddress().add(address);
-        address.getPublishers().add(publisher);
+        Address address = new Address("Address line 1", "Santiago", "Santiago Centro", "8320000");
+        Publisher publisher = new Publisher("Gabriela Rojas", address);
 
         addressRepository.save(address);
         publisherRepository.save(publisher);

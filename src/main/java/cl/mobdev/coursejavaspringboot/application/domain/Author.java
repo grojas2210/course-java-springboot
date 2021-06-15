@@ -1,4 +1,4 @@
-package cl.mobdev.coursejavaspringboot.domain;
+package cl.mobdev.coursejavaspringboot.application.domain;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -60,7 +60,6 @@ public class Author {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", books=" + books +
                 '}';
     }
 
